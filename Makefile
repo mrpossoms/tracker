@@ -2,6 +2,7 @@ TARG=$(shell gcc -dumpmachine)
 
 SRCS=$(wildcard src/*.c)
 OBJS=$(patsubst %.c,%.c.o,$(SRCS))
+# CFLAGS+=-O1
 INC=-Ideps/vidi.h/inc
 
 bin/$(TARG):
@@ -11,7 +12,7 @@ bin/$(TARG):
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 bin/$(TARG)/tracker: $(OBJS)
-	$(CC) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 	
 
 all: bin/$(TARG)/tracker
